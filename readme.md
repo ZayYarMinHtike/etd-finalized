@@ -45,7 +45,14 @@ npm run dev
 php artisan key:generate
 
 ```
-6. Run the app:
+6. Expose storage link to public:
+
+```
+php artisan storage:link
+
+```
+
+7. Run the app:
 
 ```
 php artisan serve
