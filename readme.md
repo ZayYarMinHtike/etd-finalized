@@ -17,8 +17,8 @@ mysql -u <USERNAME> -p etd-finalize < etd-finalize.sql
 ```
 cp .env.example .env
 
-# In .env file change db-username and db-pass
-DB_DATABASE=etd-finalize
+# In .env file change db-name, db-username and db-pass
+DB_DATABASE=dbname
 DB_USERNAME=user
 DB_PASSWORD=pass
 ```
@@ -45,7 +45,14 @@ npm run dev
 php artisan key:generate
 
 ```
-6. Run the app:
+6. Expose storage link to public:
+
+```
+php artisan storage:link
+
+```
+
+7. Run the app:
 
 ```
 php artisan serve
