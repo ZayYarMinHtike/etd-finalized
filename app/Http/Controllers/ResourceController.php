@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\Resource;
 
 class ResourceController extends Controller
-{
-
+{   
+    //for single post view
+    public function single(Resource $resource)
+    {
+        return view('single', compact('resource'));
+    }
 
     //function for both search and filter
     public function filter(Request $request) {
@@ -41,7 +45,7 @@ class ResourceController extends Controller
                 'tags' => $tags
             ]);
         }else {
-             echo "there is nothing like that result";
+             return view('notfound');
         }
     }
 }

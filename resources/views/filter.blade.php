@@ -10,7 +10,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>ETD</title>
 
     <link rel="stylesheet" href="/css/app.css">
 </head>
@@ -22,10 +22,9 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">New Search</a>
+        <a href="/" class="nav-link">New Search</a>
       </li>
     </ul>
-
     <ul class="navbar-nav ml-auto d-flex">
           @guest
               <li class="nav-item">

@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 Route::any('/filter', 'ResourceController@filter');
+Route::get('/filter/{resource}', 'ResourceController@single');
 
 
-
-Auth::routes();
+Auth::routes(['register' => false ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
