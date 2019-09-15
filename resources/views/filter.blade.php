@@ -85,6 +85,7 @@
                 </button>
               </div>
             </div>
+            @auth
             <hr>
             <div class=" form-group card card-teal mt-3">
                   <div class="card-header">
@@ -95,30 +96,32 @@
                         <label> Topic</label>
                         <input type="text" name="topic" value="{{ $topic }}" class="form-control mb-2" placeholder="Search Topic">
                         <hr>
-                        <label> Year</label>
-                        <select class="form-control mt-2" name="year">
-                          <option value="">Choose Year</option>
-                          <option value="2015" <?php if($year == '2015') { ?> selected <?php } ?> >2015</option>
-                          <option value="2016" <?php if($year == '2016') { ?> selected <?php } ?> >2016</option>
-                          <option value="2017" <?php if($year == '2017') { ?> selected <?php } ?> >2017</option>
-                        </select>
+                        <div class="d-flex align-items-center">
+                            <label> Year</label>
+                            <select class="form-control ml-3" name="year">
+                            <option value="">Choose Year</option>
+                            <option value="2015" <?php if($year == '2015') { ?> selected <?php } ?> >2015</option>
+                            <option value="2016" <?php if($year == '2016') { ?> selected <?php } ?> >2016</option>
+                            <option value="2017" <?php if($year == '2017') { ?> selected <?php } ?> >2017</option>
+                            </select>
+                        </div>
                         <hr>
                         <label> Tags</label>
                         <div class="form-group">
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tags" value="">
+                            <input class="form-check-input" type="radio" name="tags" value="" <?php if($tags == "") {echo ' checked="checked"';} ?>>
                             <label class="form-check-label">NONE</label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tags" value="MBA">
+                            <input class="form-check-input" type="radio" name="tags" value="MBA" <?php if($tags == "MBA") {echo ' checked="checked"';} ?>>
                             <label class="form-check-label">MBA</label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tags" value="OMBA">
+                            <input class="form-check-input" type="radio" name="tags" value="OMBA" <?php if($tags == "OMBA") {echo ' checked="checked"';} ?>>
                             <label class="form-check-label">Online MBA</label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tags" value="EMBA">
+                            <input class="form-check-input" type="radio" name="tags" value="EMBA" <?php if($tags == "EMBA") {echo ' checked="checked"';} ?>>
                             <label class="form-check-label">EMBA</label>
                           </div>
                         </div>
@@ -127,15 +130,16 @@
                         <input type="text" name="supervisor" value="{{ $supervisor }}" class="form-control mb-2" placeholder="Supervisor Name">
                         <hr>
                         <label> Author</label>
-                        <input type="text" name="author" value="{{ $name }}" class="form-control mb-2" placeholder="Author Name">
+                        <input type="text" name="author" value="{{ $author }}" class="form-control mb-2" placeholder="Author Name">
                         <div class="input-group-append">
-                          <button class="btn btn-success ml-auto mt-2" method="POST" action="/filter" type="submit">
+                          <button class="btn btn-success ml-auto mt-5" method="POST" action="/filter" type="submit">
                             Refine
                           </button>
                         </div>
                   </div>
                   <!-- /.card-body -->
             </div>
+            @endauth
           </form>
       </nav>
       <!-- /.sidebar-menu -->
@@ -145,38 +149,37 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper d-flex justify-content-around">
-  
-  <div class="col mt-5">
-            @foreach ($resources as $resource)
+    <div class="col mt-5">
+        @foreach ($resources as $resource)
             <!-- Box Comment -->
             <div class="card card-teal card-widget">
-              <div class="card-header">
-                  <h4 class="username"><a href="/filter/{{ $resource->id }}">{{ $resource->title }}</a></h4>
-                  <hr>
-                  <span class="description">{{ $resource->name }} , Supervisor:{{ $resource->supervisor }} , {{ $resource->year }}</span>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <!-- post text -->
-                <p>{{ $resource->abstract }}</p>
-              </div>
-              <!-- /.card-footer -->
-              <div class="card-footer">
-              <button type="button" class="btn btn-outline-secondary btn-sm">{{ $resource->company }}</button>
-              </div>
-              <!-- /.card-footer -->
+                <div class="card-header">
+                    <h4 class="username"><a href="/filter/{{ $resource->id }}">{{ $resource->title }}</a></h4>
+                    <hr>
+                    <span class="description">{{ $resource->name }} , Supervisor:{{ $resource->supervisor }} , {{ $resource->year }}</span>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <p>{{ $resource->abstract }}</p>
+                </div>
+                <!-- /.card-footer -->
+                <div class="card-footer">
+                <button type="button" class="btn btn-outline-secondary btn-sm">{{ $resource->tags }}</button>
+                </div>
+                <!-- /.card-footer -->
             </div>
-            <!-- /.card -->
-            @endforeach
-  </div>
-     
+                <!-- /.card -->
+        @endforeach
+        @auth
+        {{ $resources->appends(Request::except('page'))->links() }}
+        @endauth
+    </div>  
   </div>
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
   <footer class="main-footer">
-   
+                by@zymh
   </footer>
 </div>
 <!-- ./wrapper -->

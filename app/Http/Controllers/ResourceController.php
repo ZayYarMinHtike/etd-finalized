@@ -17,13 +17,15 @@ class ResourceController extends Controller
         $company = $request->company;
         $supervisor = $request->supervisor;
         $year = $request->year;
+        $tags = $request->tags;
 
         $resources = Resource::search($q); 
         $resources = $resources->where('name','LIKE','%'.$author.'%');
         $resources = $resources->where('company','LIKE','%'.$company.'%');
         $resources = $resources->where('supervisor','LIKE','%'.$supervisor.'%');
         $resources = $resources->where('topic','LIKE','%'.$topic.'%'); 
-        $resources = $resources->where('year','LIKE','%'.$year.'%');         
+        $resources = $resources->where('year','LIKE','%'.$year.'%');
+        $resources = $resources->where('tags','LIKE','%'.$tags.'%');           
         
 
         $resources = $resources->latest()->paginate(5);             
@@ -36,6 +38,7 @@ class ResourceController extends Controller
                 'supervisor' => $supervisor,
                 'topic' => $topic,
                 'year' => $year,
+                'tags' => $tags
             ]);
         }else {
              echo "there is nothing like that result";

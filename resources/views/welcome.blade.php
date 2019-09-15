@@ -9,6 +9,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <link rel="stylesheet" href="/css/app.css">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -55,7 +57,6 @@
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
-                text-transform: uppercase;
             }
 
             .m-b-md {
@@ -68,7 +69,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="#">{{auth()->user()->name}}</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -82,7 +83,7 @@
             <div class="content col-8 mb-5">
                 <form action="/filter" method="POST" role="search">
                 {{ csrf_field() }}
-                <img src="#" alt="ETD"
+                <img src="/storage/img/etd-search.jpg" alt="ETD"
                 style="opacity: .8">
             
                 <input type="search" class="col-12 form-control" name="q"

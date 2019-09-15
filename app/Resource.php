@@ -10,7 +10,7 @@ class Resource extends Model
         return $query->where('title','LIKE','%'.$q.'%')
         ->orWhere('name','LIKE','%'.$q.'%')
         ->orWhere('batch','LIKE','%'.$q.'%')
-        ->orWhere('mba/emba','LIKE','%'.$q.'%')
+        ->orWhere('tags','LIKE','%'.$q.'%')
         ->orWhere('topic','LIKE','%'.$q.'%')
         ->orWhere('year','LIKE','%'.$q.'%')
         ->orWhere('company','LIKE','%'.$q.'%')
