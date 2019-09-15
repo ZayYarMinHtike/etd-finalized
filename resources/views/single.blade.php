@@ -7,16 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>ETD</title>
 
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div id="app" class="wrapper">
 
   <!-- Navbar -->
   <nav class="navbar navbar-white navbar-light">
-    <a href="#" class="navbar-brand">
+    <a href="/" class="navbar-brand">
       <img src="/storage/img/etd-search.jpg" alt="ETD" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-bold">ETD</span>
@@ -72,7 +74,7 @@
     <!-- /.card-header -->
     <div class="card-body">
         <div class="col mb-5">
-            <a href="/filter" class="btn btn-success btn-md">Return to Search</a>
+            <button type="button" onclick="goBack()" class="btn btn-success btn-md">Return to Search</button>
         </div>
         <div class="col mb-5">
             <h5>Description</h5>
@@ -139,7 +141,12 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
+<!-- script for goback button -->
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 <script src="/js/app.js"></script>
 </body>
 </html>
