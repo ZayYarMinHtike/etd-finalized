@@ -24,6 +24,7 @@ cp .env.example .env
 DB_DATABASE=dbname
 DB_USERNAME=user
 DB_PASSWORD=pass
+
 ```
 3. Install the extended package dependencies.
 
@@ -54,8 +55,16 @@ php artisan key:generate
 php artisan storage:link
 
 ```
+7. Seed user for logging in the application
 
-7. Run the app:
+```
+php artisan db:seed
+
+#seeded users' credentials can be found in database/seeds/UserSeeder
+
+```
+
+8. Run the app:
 
 ```
 php artisan serve
