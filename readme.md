@@ -7,7 +7,10 @@ Installation
 ```
 cd database/database-for-etd
 
-mysql -u <USERNAME> -p etd-finalize < etd-finalize.sql
+#Command for creating database if no database exist
+mysql -u <USERNAME> -p -e "CREATE DATABASE IF NOT EXISTS <DBNAME>"
+
+mysql -u <USERNAME> -p <DBNAME> < etd-finalize.sql
 
 ```
 
